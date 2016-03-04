@@ -1,1 +1,5 @@
 venv/
+.idea/
+music_admin/db.sqlite3
+music_admin/music_spider/migrations
+
