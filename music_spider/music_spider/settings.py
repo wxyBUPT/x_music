@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for crawler project
+# Scrapy settings for music_spider project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,32 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'crawler'
+BOT_NAME = 'music_spider'
 
-SPIDER_MODULES = ['crawler.spiders']
-NEWSPIDER_MODULE = 'crawler.spiders'
+SPIDER_MODULES = ['music_spider.spiders']
+NEWSPIDER_MODULE = 'music_spider.spiders'
 
 
+
+#共用了Django 中的模型代码，
+#将 Django 工程目录加入到scrapy 的环境变量中
+#并将 music_admin.settings 设置为 DJANGO_SETTINGS_MODULE
+#环境变量
+import sys
+sys.path.append('/Users/xiyuanbupt/PycharmProjects/x_music/music_admin')
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'music_admin.settings'
+
+#开启 Splash
+SPLASH_URL = 'http://192.168.99.100:8050'
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapyjs.SplashMiddleware': 725,
+}
+
+DUPEFILTER_CLASS = 'scrapyjs.SplashAwareDupeFilter'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'crawler (+http://www.yourdomain.com)'
+#USER_AGENT = 'music_spider (+http://www.yourdomain.com)'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS=32
@@ -44,13 +62,13 @@ NEWSPIDER_MODULE = 'crawler.spiders'
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'crawler.middlewares.MyCustomSpiderMiddleware': 543,
+#    'music_spider.middlewares.MyCustomSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'crawler.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'music_spider.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -62,7 +80,7 @@ NEWSPIDER_MODULE = 'crawler.spiders'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'crawler.pipelines.SomePipeline': 300,
+#    'music_spider.pipelines.SomePipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
