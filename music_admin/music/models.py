@@ -53,4 +53,3 @@ class XMLYSounds(models.Model):
     )
     name = models.CharField(max_length=50)
     url = models.URLField()
-

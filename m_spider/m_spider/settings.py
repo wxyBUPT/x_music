@@ -14,6 +14,24 @@ BOT_NAME = 'm_spider'
 SPIDER_MODULES = ['m_spider.spiders']
 NEWSPIDER_MODULE = 'm_spider.spiders'
 
+#设置splash 代理
+SPLASH_URL = 'http://192.168.99.100:8050'
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapyjs.SplashMiddleware': 725,
+}
+
+DUPEFILTER_CLASS = 'scrapyjs.SplashAwareDupeFilter'
+
+#spider 与Django project结合，使用了Django 中的models
+#做了如下更改
+
+import sys
+sys.path.append('/Users/xiyuanbupt/PycharmProjects/x_music/music_admin')
+
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'music_admin.settings'
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'm_spider (+http://www.yourdomain.com)'
