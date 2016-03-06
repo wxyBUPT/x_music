@@ -32,7 +32,6 @@ sys.path.append('/Users/xiyuanbupt/PycharmProjects/x_music/music_admin')
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'music_admin.settings'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'm_spider (+http://www.yourdomain.com)'
 
